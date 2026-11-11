@@ -102,10 +102,21 @@ function chooseMunicipality(id) {
 function chooseSoil(soil) {
   if (!state.municipality || !SOILS.includes(soil)) return;
   state.soil = soil;
+  const values = reportValues(state.municipality, soil);
   const row = node('tr');
-  for (const value of reportValues(state.municipality, soil)) row.append(node('td', value ?? 'Sin dato'));
+  const headers = element('reportBody').closest('table').querySelectorAll('th[scope="col"]');
+  const phoneRows = values.map((value, index) => {
+    row.append(node('td', value ?? 'Sin dato'));
+    const phoneRow = node('tr');
+    const label = headers[index].cloneNode(true);
+    label.scope = 'row';
+    phoneRow.append(label, node('td', value ?? 'Sin dato'));
+    return phoneRow;
+  });
   element('reportBody').replaceChildren(row);
+  element('phoneReportBody').replaceChildren(...phoneRows);
   element('soilHeading').textContent = `Suelo tipo ${soil}`;
+  element('phoneSoilHeading').textContent = element('soilHeading').textContent;
   element('reportCaption').textContent = `${state.department}, ${municipalityName(state.municipality)}, suelo ${soil}`;
   showView('result');
 }
