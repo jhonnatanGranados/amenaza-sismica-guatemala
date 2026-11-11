@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulta municipal de parámetros sísmicos del Anexo A de la NSE 2, edición 2024, Guatemala.">
+  <title>Amenaza sísmica por municipios · NSE 2 2024</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body data-view="department">
+  <a class="skip-link" href="#main">Ir a la consulta</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Consulta municipal, inicio"><span class="brand-stamp">NSE<span>2</span></span><span>Consulta municipal<small>Guatemala · Seguridad estructural</small></span></a>
+    <span class="edition">Edición 2024</span>
+  </header>
+
+  <main id="main">
+    <section class="page-heading" aria-labelledby="pageTitle">
+      <p class="document-reference">Anexo A / Tabla A-1</p>
+      <h1 id="pageTitle">Amenaza sísmica por municipios</h1>
+      <p>Normas de Seguridad Estructural para Guatemala</p>
+    </section>
+
+    <section id="loadStatus" class="load-status" role="status">Cargando el catálogo municipal…</section>
+    <button id="retry" class="text-action" hidden>Volver a cargar</button>
+
+    <section id="consultation" class="consultation" hidden>
+      <div class="view-header">
+        <div><p id="context" class="view-context">Guatemala</p><h2 id="viewTitle" tabindex="-1">Elige un departamento</h2><p id="viewDescription">Busca por nombre o consulta el directorio.</p></div>
+        <button id="reset" class="text-action" hidden>Nueva consulta</button>
+      </div>
+      <nav id="viewNav" class="view-nav" aria-label="Navegación de consulta" hidden><button id="back" class="text-action">← Volver</button></nav>
+
+      <section id="departmentView" class="view-content" aria-label="Departamentos">
+        <label for="departmentSearch">Buscar departamento</label>
+        <input id="departmentSearch" type="search" placeholder="Por ejemplo, Huehuetenango" autocomplete="off" aria-controls="departmentList">
+        <div class="directory-heading"><h3>Directorio departamental</h3><span id="departmentCount" role="status"></span></div>
+        <div id="departmentList" class="department-list"></div>
+      </section>
+
+      <section id="municipalityView" class="view-content" aria-label="Municipios" hidden>
+        <label for="municipalitySearch">Buscar municipio</label>
+        <input id="municipalitySearch" type="search" placeholder="Escribe el nombre del municipio" autocomplete="off" aria-controls="municipalityList">
+        <div class="directory-heading"><h3>Municipios</h3><span id="municipalityCount" role="status"></span></div>
+        <div id="municipalityList" class="municipality-list"></div>
+      </section>
+
+      <section id="soilView" class="view-content" aria-label="Tipos de suelo" hidden>
+        <div class="soil-selector"><label for="soilSelect">Tipo de suelo</label><select id="soilSelect" aria-controls="resultView"><option value="">Selecciona el tipo de suelo</option></select></div>
+        <div id="soilList" class="soil-list"></div>
+      </section>
+
+      <section id="resultView" class="report" aria-label="Resultado de la consulta" hidden>
+        <div class="report-title"><h2 id="resultTitle" tabindex="-1">LISTADO DE AMENAZA SÍSMICA POR MUNICIPIOS</h2><p>NORMAS DE SEGURIDAD ESTRUCTURAL PARA<br>GUATEMALA</p><strong>NSE 2</strong><span>Año 2024</span></div>
+        <div class="report-scroll" role="region" aria-label="Tabla de parámetros seleccionados" tabindex="0">
+          <table class="parameter-table">
+            <caption id="reportCaption" class="visually-hidden">Parámetros del municipio y suelo seleccionados</caption>
+            <colgroup><col><col><col><col><col><col><col></colgroup>
+            <thead><tr><th id="soilHeading" colspan="7" scope="colgroup" class="soil-heading"></th></tr><tr><th scope="col">No.</th><th scope="col">Departamento</th><th scope="col">Municipio</th><th scope="col">I<sub>o</sub></th><th scope="col">S<sub>cr</sub></th><th scope="col">S<sub>1r</sub></th><th scope="col">T<sub>L</sub></th></tr></thead>
+            <tbody id="reportBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
+
